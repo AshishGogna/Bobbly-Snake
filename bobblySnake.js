@@ -128,7 +128,7 @@ snake.move = function()
 
     if (snake.headBang == 1)
     {
-        alert ("Damn! You lost\nYour score: " + score);
+        alert ("Damn! Game over\nYour score: " + score);
 
         /*
         for (var i=0; i<snake.blocks.length; i++)
