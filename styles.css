@@ -1,7 +1,18 @@
+.section
+{
+	width: 100%;
+	height: 100%;
+}
 #gameDiv
 {
 	width:500;
 	height: 500;
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
 }
 #scoreDiv
 {
@@ -10,7 +21,4 @@
 #speedDiv
 {
 	float: right;
-}
-#gameCanvas
-{
 }
