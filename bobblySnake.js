@@ -92,7 +92,6 @@ snake.move = function()
     var lastBlock = snake.blocks[snake.blocks.length-1];
 
 
-
     if (snake.direction == "right")
         firstBlock = [lastBlock[0]+snake.blockSize, lastBlock[1]];
     if (snake.direction == "down")
@@ -128,24 +127,11 @@ snake.move = function()
 
     if (snake.headBang == 1)
     {
-        alert ("Damn! Game over\nYour score: " + score);
+        snake.headBang = 0;
 
-        /*
-        for (var i=0; i<snake.blocks.length; i++)
-        {
-            var coordinates = snake.blocks[i];
-            var x = coordinates[0];
-            var y = coordinates[1];
+        $("#gameDiv").empty();
 
-            world.ctx.fillStyle = '#ffffff';
-            world.ctx.fillRect(x, y, snake.blockSize, snake.blockSize);
-
-            var delay=1000; //1 second
-
-            setTimeout(function() {
-              //your code to be executed after 1 second
-            }, delay);
-        }*/
+        restartGame();
     }
     else
     {
@@ -238,13 +224,39 @@ function updateScore()
     $('#speedDiv').html("Speed: " + Math.round(speed * 100) / 100 + "x");
 }
 
-$(document).ready(function () {
-
+function restartGame()
+{
+    location.reload();
+    //snake.init = [];
+}
+function initGame()
+{
+    console.log("BBB");
     maxWidth = $('#gameDiv').width();
     maxHeight = $('#gameDiv').height();
 
     $('#gameDiv').append('<div id="scoreDiv">Score: 0</div>');
     $('#gameDiv').append('<div id="speedDiv">Speed: 1x</div><br>');
     world.init();
+}
 
+function initUI()
+{
+    $('#gameDiv').append('<div id="menu"><div id="buttons"><button onclick="startGame()">Start Game</button><button onclick="instructions()">Instructions</button></div></div>');
+}
+
+function startGame()
+{
+    $( "#menu" ).remove();
+    initGame();
+}
+
+function instructions()
+{
+}
+
+$(document).ready(function () {
+
+    initUI();
+    //initGame();
 });
