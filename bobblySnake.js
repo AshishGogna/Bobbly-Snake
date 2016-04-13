@@ -174,7 +174,7 @@ snake.detectCollision = function()
             world.fps ++;
     }
 
-    //Boundry Collision
+    //Boundry Collision detection
     if (lastBlock[0] >= maxWidth || lastBlock[0] < 0)
         snake.headBang = 1;
     if (lastBlock[1] >= maxHeight || lastBlock[1] < 0)
