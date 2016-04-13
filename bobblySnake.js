@@ -2,6 +2,8 @@
 var windowWidth = 700;
 var windowHeight = 700;
 
+var score = 0;
+
 var world = {
     ctx:null,
     fps:20 //new frame every 0.5 seconds
@@ -21,7 +23,7 @@ world.init = function()
     world.ctx.strokeRect(0, 0, windowWidth-1, windowHeight-1);
 
     //Escape routes
-
+    //escapeRoutes.init();
 
     snake.init();
     snake.move();
@@ -36,8 +38,27 @@ window.requestAnimFrame = (function(callback) {
 };
 })();
 
-//Escape Routs rects
-var escapeRects = [];
+/*
+//Escape Routs
+var escapeRoutes = {
+    escapeRects:[]
+}
+escapeRoutes.init = function()
+{
+    //Escape rects
+    escapeRoutes.escapeRects.push([50, 0, 60, 1]);
+    escapeRoutes.escapeRects.push([600, windowHeight-2, 60, 2]);
+    escapeRoutes.escapeRects.push([0, 230, 1, 70]);
+    escapeRoutes.escapeRects.push([windowWidth-2, 230, 2, 70]);
+
+    for (var i=0; i<escapeRoutes.escapeRects.length; i++)
+    {
+        var eRect = escapeRoutes.escapeRects[i]; 
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(eRect[0], eRect[1], eRect[2], eRect[3]);
+    }
+}
+*/
 
 //The Snake
 var snake = {
@@ -64,7 +85,7 @@ snake.init = function()
 }
 snake.move = function()
 {
-    world.ctx.clearRect(1, 1, windowWidth-2, windowHeight-2); //clear the canvas
+    world.ctx.clearRect(1, 1, windowWidth-3, windowHeight-3); //clear the canvas
 
     var firstBlock = snake.blocks.splice(0, 0);
     snake.blocks.shift();
