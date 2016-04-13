@@ -253,6 +253,8 @@ function startGame()
 
 function instructions()
 {
+    $( "#menu" ).remove();
+    $('#gameDiv').append('<div id="instructions"><div id="#instructionsContent"><h3>How to play ?</h3><h4>Movement controls - </h4>Up = W<br>Right = D<br>Down = S<br>Left = A</div></div>');
 }
 
 $(document).ready(function () {
