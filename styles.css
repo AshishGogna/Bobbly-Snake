@@ -1,0 +1,16 @@
+#gameDiv
+{
+	width:500;
+	height: 500;
+}
+#scoreDiv
+{
+	float: left;
+}
+#speedDiv
+{
+	float: right;
+}
+#gameCanvas
+{
+}

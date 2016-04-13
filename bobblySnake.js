@@ -1,8 +1,9 @@
 //The World
-var windowWidth = 700;
-var windowHeight = 700;
+var maxWidth = 0;
+var maxHeight = 0;
 
 var score = 0;
+var speed = 1;
 
 var world = {
     ctx:null,
@@ -10,17 +11,17 @@ var world = {
 }
 world.init = function()
 {
-    $('body').append('<canvas id="gameCanvas">');
+    $('#gameDiv').append('<canvas id="gameCanvas">');
     var $canvas = $('#gameCanvas');
-    $canvas.attr('width', windowWidth);
-    $canvas.attr('height', windowHeight);
+    $canvas.attr('width', maxWidth);
+    $canvas.attr('height', maxHeight);
     var canvas = $canvas[0];
     ctx = canvas.getContext('2d');
     
     world.ctx = ctx;
 
     world.ctx.strokeStyle = '#fe57a1';
-    world.ctx.strokeRect(0, 0, windowWidth-1, windowHeight-1);
+    world.ctx.strokeRect(0, 0, maxWidth-1, maxHeight-1);
 
     //Escape routes
     //escapeRoutes.init();
@@ -30,7 +31,6 @@ world.init = function()
     //Start moving the snake
     //setInterval(snake.move, world.frameLength);
 }
-
 window.requestAnimFrame = (function(callback) {
     return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame ||
     function(callback) {
@@ -47,9 +47,9 @@ escapeRoutes.init = function()
 {
     //Escape rects
     escapeRoutes.escapeRects.push([50, 0, 60, 1]);
-    escapeRoutes.escapeRects.push([600, windowHeight-2, 60, 2]);
+    escapeRoutes.escapeRects.push([600, maxHeight-2, 60, 2]);
     escapeRoutes.escapeRects.push([0, 230, 1, 70]);
-    escapeRoutes.escapeRects.push([windowWidth-2, 230, 2, 70]);
+    escapeRoutes.escapeRects.push([maxWidth-2, 230, 2, 70]);
 
     for (var i=0; i<escapeRoutes.escapeRects.length; i++)
     {
@@ -64,15 +64,15 @@ escapeRoutes.init = function()
 var snake = {
     blockSize:20,
     direction:"right",
-    blocks:[]
+    blocks:[],
+    headBang:0
 }
 snake.init = function()
 {
-    //world.ctx.clearRect(11, 11, windowWidth-13, windowHeight-13); //clear the canvas
     world.ctx.fillStyle = '#fe57a1';
 
-    snake.blocks.push([0,0]);
-    snake.blocks.push([20,0]);
+    snake.blocks.push([20,100]);
+    snake.blocks.push([40,100]);
 
     for (var i=0; i<snake.blocks.length; i++)
     {
@@ -85,11 +85,13 @@ snake.init = function()
 }
 snake.move = function()
 {
-    world.ctx.clearRect(1, 1, windowWidth-3, windowHeight-3); //clear the canvas
+    world.ctx.clearRect(1, 1, maxWidth-3, maxHeight-3); //clear the canvas
 
     var firstBlock = snake.blocks.splice(0, 0);
     snake.blocks.shift();
     var lastBlock = snake.blocks[snake.blocks.length-1];
+
+
 
     if (snake.direction == "right")
         firstBlock = [lastBlock[0]+snake.blockSize, lastBlock[1]];
@@ -124,10 +126,32 @@ snake.move = function()
     //Detect collision
     snake.detectCollision();
 
-    setTimeout(function() {
-        requestAnimationFrame(snake.move);
-        // Drawing code goes here
-    }, 1000 / world.fps);
+    if (snake.headBang == 1)
+    {
+        /*
+        for (var i=0; i<snake.blocks.length; i++)
+        {
+            var coordinates = snake.blocks[i];
+            var x = coordinates[0];
+            var y = coordinates[1];
+
+            world.ctx.fillStyle = '#ffffff';
+            world.ctx.fillRect(x, y, snake.blockSize, snake.blockSize);
+
+            var delay=1000; //1 second
+
+            setTimeout(function() {
+              //your code to be executed after 1 second
+            }, delay);
+        }*/
+    }
+    else
+    {
+        setTimeout(function() {
+            requestAnimationFrame(snake.move);
+            // Drawing code goes here
+        }, 1000 / world.fps);
+    }
 }
 
 snake.detectCollision = function()
@@ -142,28 +166,31 @@ snake.detectCollision = function()
         food.x = 0;
         food.y = 0;   
 
+        score++;
+        speed+=0.1;
+        updateScore();
+
         if (world.fps < 70)
             world.fps ++;
     }
 
     //Boundry Collision
-    if (lastBlock[0] >= windowWidth)
-    {
-        console.log("Out");
-    }
+    if (lastBlock[0] >= maxWidth || lastBlock[0] < 0)
+        snake.headBang = 1;
+    if (lastBlock[1] >= maxHeight || lastBlock[1] < 0)
+        snake.headBang = 1;
 }
 
 //The Food
 food = {
-
     x:0,
     y:0,
     blockSize:20
 }
 food.chooseRandomLocation = function()
 {
-    var randomX = Math.floor((Math.random() * windowWidth) + 0);
-    var randomY = Math.floor((Math.random() * windowHeight) + 0);
+    var randomX = Math.floor((Math.random() * maxWidth) + 0);
+    var randomY = Math.floor((Math.random() * maxHeight) + 0);
 
     //X
     //n-(n%10)
@@ -191,6 +218,7 @@ $( document ).keypress(function(e) {
     var ch = String.fromCharCode(e.charCode);
     if(e.ctrlKey){
     }else{
+        console.log("AAA");
         if (ch == "w")
             snake.direction = "up";
         if (ch == "a")
@@ -202,8 +230,19 @@ $( document ).keypress(function(e) {
     }
 });
 
+function updateScore()
+{
+    $('#scoreDiv').html("Score: " + score);
+    $('#speedDiv').html("Speed: " + Math.round(speed * 100) / 100 + "x");
+}
+
 $(document).ready(function () {
 
+    maxWidth = $('#gameDiv').width();
+    maxHeight = $('#gameDiv').height();
+
+    $('#gameDiv').append('<div id="scoreDiv">Score: 0</div>');
+    $('#gameDiv').append('<div id="speedDiv">Speed: 1x</div><br>');
     world.init();
 
 });
