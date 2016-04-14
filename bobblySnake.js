@@ -1,4 +1,4 @@
-//The World
+//Global variables
 var maxWidth = 0;
 var maxHeight = 0;
 
@@ -7,10 +7,12 @@ var speed = 1;
 
 var gameStarted = 0;
 
+//The World
 var world = {
     ctx:null,
-    fps:20 //new frame every 0.5 seconds
+    fps:20
 }
+
 world.init = function()
 {
     $('#gameDiv').append('<canvas id="gameCanvas">');
@@ -25,41 +27,8 @@ world.init = function()
     world.ctx.strokeStyle = '#fe57a1';
     world.ctx.strokeRect(0, 0, maxWidth-1, maxHeight-1);
 
-    //Escape routes
-    //escapeRoutes.init();
-
     snake.init();
-    //Start moving the snake
-    //setInterval(snake.move, world.frameLength);
 }
-window.requestAnimFrame = (function(callback) {
-    return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame ||
-    function(callback) {
-    window.setTimeout(callback, 100 / 60);
-};
-})();
-
-/*
-//Escape Routs
-var escapeRoutes = {
-    escapeRects:[]
-}
-escapeRoutes.init = function()
-{
-    //Escape rects
-    escapeRoutes.escapeRects.push([50, 0, 60, 1]);
-    escapeRoutes.escapeRects.push([600, maxHeight-2, 60, 2]);
-    escapeRoutes.escapeRects.push([0, 230, 1, 70]);
-    escapeRoutes.escapeRects.push([maxWidth-2, 230, 2, 70]);
-
-    for (var i=0; i<escapeRoutes.escapeRects.length; i++)
-    {
-        var eRect = escapeRoutes.escapeRects[i]; 
-        ctx.fillStyle = '#ffffff';
-        ctx.fillRect(eRect[0], eRect[1], eRect[2], eRect[3]);
-    }
-}
-*/
 
 //The Snake
 var snake = {
@@ -68,6 +37,7 @@ var snake = {
     blocks:[],
     headBang:0
 }
+
 snake.init = function()
 {
     world.ctx.fillStyle = '#fe57a1';
@@ -87,9 +57,10 @@ snake.init = function()
         world.ctx.fillRect(x, y, snake.blockSize, snake.blockSize);
     }
 }
+
 snake.move = function()
 {
-    world.ctx.clearRect(1, 1, maxWidth-3, maxHeight-3); //clear the canvas
+    world.ctx.clearRect(1, 1, maxWidth-3, maxHeight-3);
 
     var firstBlock = snake.blocks.splice(0, 0);
     snake.blocks.shift();
@@ -133,7 +104,7 @@ snake.move = function()
     {
         snake.headBang = 0;
 
-        var delay=1000; //1 second
+        var delay=1000;
 
         world.ctx.font="26px Sans-Serif";
         world.ctx.strokeText("Game Over", maxWidth/2-50, maxHeight/2, 100);
@@ -147,8 +118,8 @@ snake.move = function()
     else
     {
         setTimeout(function() {
+
             requestAnimationFrame(snake.move);
-            // Drawing code goes here
         }, 1000 / world.fps);
     }
 }
@@ -186,6 +157,7 @@ food = {
     y:0,
     blockSize:20
 }
+
 food.chooseRandomLocation = function()
 {
     var randomX = Math.floor((Math.random() * maxWidth) + 0);
@@ -235,17 +207,29 @@ $( document ).keypress(function(e) {
     }
 });
 
+//Animation function
+window.requestAnimFrame = (function(callback) {
+    return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame ||
+    function(callback) {
+    window.setTimeout(callback, 100 / 60);
+};
+})();
+
+//Score update function
 function updateScore()
 {
     $('#scoreDiv').html("Score: " + score);
     $('#speedDiv').html("Speed: " + Math.round(speed * 100) / 100 + "x");
 }
 
+//Game restart function, jest reloads the page
 function restartGame()
 {
     location.reload();
     //snake.init = [];
 }
+
+//Game initialization function
 function initGame()
 {
     console.log("BBB");
@@ -257,11 +241,13 @@ function initGame()
     world.init();
 }
 
+//Game menu initialization function
 function initUI()
 {
     $('#gameDiv').append('<div id="menu"><div id="buttons"><button onclick="startGame()">Start Game</button><button onclick="instructions()">Instructions</button></div></div>');
 }
 
+//Start game button onclick function
 function startGame()
 {
     $( "#menu" ).remove();
@@ -269,14 +255,15 @@ function startGame()
     initGame();
 }
 
+//Instructions button onclick function
 function instructions()
 {
     $( "#menu" ).remove();
     $('#gameDiv').append('<div id="instructions"><div id="instructionsContent"><h3>How to play ?</h3><h4>Movement controls</h4>W = Up<br>D = Right<br>S = Down<br>A = Left<br><h4>Difficulty</h4>The speed of snake increases 0.1x when snake eats the food. At the same time, the score gets incrementedS too.</div></div>');
 }
 
+//Document onload function
 $(document).ready(function () {
 
     initUI();
-    //initGame();
 });
