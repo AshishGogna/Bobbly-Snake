@@ -135,7 +135,7 @@ snake.move = function()
 
         var delay=1000; //1 second
 
-        world.ctx.font="20px Georgia";
+        world.ctx.font="26px Sans-Serif";
         world.ctx.strokeText("Game Over", maxWidth/2-50, maxHeight/2, 100);
 
         setTimeout(function() {
