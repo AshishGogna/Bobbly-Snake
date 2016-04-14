@@ -5,6 +5,8 @@ var maxHeight = 0;
 var score = 0;
 var speed = 1;
 
+var gameStarted = 0;
+
 var world = {
     ctx:null,
     fps:20 //new frame every 0.5 seconds
@@ -27,7 +29,6 @@ world.init = function()
     //escapeRoutes.init();
 
     snake.init();
-    snake.move();
     //Start moving the snake
     //setInterval(snake.move, world.frameLength);
 }
@@ -80,6 +81,9 @@ snake.init = function()
         var x = coordinates[0];
         var y = coordinates[1];
 
+        if (i == snake.blocks.length-1)
+            world.ctx.fillStyle = '#000000';
+
         world.ctx.fillRect(x, y, snake.blockSize, snake.blockSize);
     }
 }
@@ -129,9 +133,16 @@ snake.move = function()
     {
         snake.headBang = 0;
 
-        $("#gameDiv").empty();
+        var delay=1000; //1 second
 
-        restartGame();
+        world.ctx.font="20px Georgia";
+        world.ctx.strokeText("Game Over", maxWidth/2-50, maxHeight/2, 100);
+
+        setTimeout(function() {
+
+            $("#gameDiv").empty();
+            restartGame();
+        }, delay);
     }
     else
     {
@@ -206,7 +217,13 @@ $( document ).keypress(function(e) {
     var ch = String.fromCharCode(e.charCode);
     if(e.ctrlKey){
     }else{
-        console.log("AAA");
+
+        if (gameStarted == 0)
+        {
+            gameStarted = 1;
+            snake.move();
+        }
+    
         if (ch == "w")
             snake.direction = "up";
         if (ch == "a")
@@ -248,13 +265,14 @@ function initUI()
 function startGame()
 {
     $( "#menu" ).remove();
+    gameStarted = 0;
     initGame();
 }
 
 function instructions()
 {
     $( "#menu" ).remove();
-    $('#gameDiv').append('<div id="instructions"><div id="#instructionsContent"><h3>How to play ?</h3><h4>Movement controls - </h4>Up = W<br>Right = D<br>Down = S<br>Left = A</div></div>');
+    $('#gameDiv').append('<div id="instructions"><div id="instructionsContent"><h3>How to play ?</h3><h4>Movement controls</h4>W = Up<br>D = Right<br>S = Down<br>A = Left<br><h4>Difficulty</h4>The speed of snake increases 0.1x when snake eats the food. At the same time, the score gets incrementedS too.</div></div>');
 }
 
 $(document).ready(function () {
