@@ -212,13 +212,25 @@ $( document ).keypress(function(e) {
         }
     
         if (ch == "w")
-            snake.direction = "up";
+        {
+            if (snake.direction != "down")
+                snake.direction = "up";
+        }
         if (ch == "a")
-            snake.direction = "left";
+        {
+            if (snake.direction != "right")
+                snake.direction = "left";
+        }
         if (ch == "s")
-            snake.direction = "down";
+        {
+            if (snake.direction != "up")
+                snake.direction = "down";
+        }
         if (ch == "d")
-            snake.direction = "right";
+        {
+            if (snake.direction != "left")
+                snake.direction = "right";
+        }
     }
 });
 
