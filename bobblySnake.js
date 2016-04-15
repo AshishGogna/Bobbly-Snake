@@ -126,9 +126,24 @@ snake.move = function()
 
 snake.detectCollision = function()
 {
-    //Food collision
     var lastBlock = snake.blocks[snake.blocks.length-1];
 
+    //Body collision
+    for (var i=0; i<snake.blocks.length; i++)
+    {
+        var coordinates = snake.blocks[i];
+        var x = coordinates[0];
+        var y = coordinates[1];
+
+        var lastBlockX = lastBlock[0];
+        var lastBlockY = lastBlock[1];
+
+        if (i < snake.blocks.length-1 && i > 0)
+            if (lastBlockX == x && lastBlockY == y)
+                snake.headBang = 1;
+    }
+
+    //Food collision
     if (lastBlock[0] == food.x && lastBlock[1] == food.y)
     {
         snake.blocks.push([food.x, food.y]);
