@@ -24,9 +24,6 @@ world.init = function()
     
     world.ctx = ctx;
 
-    world.ctx.strokeStyle = '#fe57a1';
-    world.ctx.strokeRect(0, 0, maxWidth-1, maxHeight-1);
-
     snake.init();
 }
 
@@ -60,7 +57,7 @@ snake.init = function()
 
 snake.move = function()
 {
-    world.ctx.clearRect(1, 1, maxWidth-3, maxHeight-3);
+    world.ctx.clearRect(0, 0, maxWidth, maxHeight);
 
     var firstBlock = snake.blocks.splice(0, 0);
     snake.blocks.shift();
@@ -245,7 +242,7 @@ window.requestAnimFrame = (function(callback) {
 //Score update function
 function updateScore()
 {
-    $('#scoreDiv').html("Score: " + score);
+    $('#scoreDiv').html(score);
     $('#speedDiv').html("Speed: " + Math.round(speed * 100) / 100 + "x");
 }
 
@@ -263,8 +260,8 @@ function initGame()
     maxWidth = $('#gameDiv').width();
     maxHeight = $('#gameDiv').height();
 
-    $('#gameDiv').append('<div id="scoreDiv">Score: 0</div>');
-    $('#gameDiv').append('<div id="speedDiv">Speed: 1x</div><br>');
+    $('#gameDiv').append('<div id="scoreDiv">0</div>');
+    $('#gameDiv').append('<div id="speedDiv">1x</div><br>');
     world.init();
 }
 
