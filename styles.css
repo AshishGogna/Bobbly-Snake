@@ -1,6 +1,6 @@
 body
 {
-	background: url("images/background.png");
+	background: url("images/background_pink.jpg");
 	background-repeat: repeat;
 }
 .section
@@ -70,10 +70,8 @@ body
 }
 #instructions
 {
-	background-color: #fe57a1;
 	width: 100%;
 	height: 100%;
-	color: white;
 }
 #buttons
 {
@@ -120,7 +118,6 @@ button:focus
 }
 #instructionsContent
 {
-	width: 250px;
 	height: 100px;
 	margin-left: 20px;
 	padding-top: 10px;
@@ -148,6 +145,9 @@ button:focus
 	background-color: blue;
 	display: inline-block;
 	float: left;
+	-webkit-transition-duration: 0.2s;
+    transition-duration: 0.2s;
+    cursor: hand;
 }
 .cBox:hover
 {

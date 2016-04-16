@@ -11,7 +11,8 @@ var gameStarted = 0;
 //The World
 var world = {
     ctx:null,
-    fps:20
+    fps:20,
+    themeColor: "#fe57a1"
 }
 
 world.init = function()
@@ -38,7 +39,7 @@ var snake = {
 
 snake.init = function()
 {
-    world.ctx.fillStyle = '#fe57a1';
+    world.ctx.fillStyle = world.themeColor;
 
     snake.blocks.push([20,100]);
     snake.blocks.push([40,100]);
@@ -81,7 +82,7 @@ snake.move = function()
         if (i == snake.blocks.length-1)
             world.ctx.fillStyle = '#000000';
         else
-            world.ctx.fillStyle = '#fe57a1';
+            world.ctx.fillStyle = world.themeColor;
 
         var coordinates = snake.blocks[i];
         var x = coordinates[0];
@@ -243,8 +244,8 @@ window.requestAnimFrame = (function(callback) {
 //Score update function
 function updateScore()
 {
-    $('#scoreDiv').html(score);
-    $('#speedDiv').html(Math.round(speed * 100) / 100 + "x");
+    $('#scoreNum').html(score);
+    $('#speedNum').html(Math.round(speed * 100) / 100 + "x");
 }
 
 //Game restart function, jest reloads the page
@@ -280,7 +281,7 @@ function startGame()
 function instructions()
 {
     $( "#menu" ).remove();
-    $('#gameDiv').append('<div id="instructions"><div id="instructionsContent"><h3>How to play ?</h3><h4>Movement controls</h4>W = Up<br>D = Right<br>S = Down<br>A = Left<br><h4>Difficulty</h4>The speed of snake increases 0.1x when snake eats the food. At the same time, the score gets incrementedS too.</div></div>');
+    $('#gameDiv').append('<div id="instructions"><div id="instructionsContent"><h3>How to play ?</h3><h4>Movement controls</h4>W = Up<br>D = Right<br>S = Down<br>A = Left<br><h4>Rules</h4>You just have to eat the food as many times as you can.<br>If you hit the boundry walls, you die.<h4>Difficulty</h4>The speed of snake increases 0.1x when snake eats the food. At the same time,<br>the score gets incremented too.</div></div>');
 }
 
 function changeThemeColor(color)
@@ -290,7 +291,39 @@ function changeThemeColor(color)
     //lemon = #E4EC7D
     //sky = #29E5D7
     //yellow = #CCC902
-    console.log("ABCD = " + color);
+
+    switch(color) {
+        case "pink":
+            world.themeColor = "#fe57a1";
+            break;
+        case "orange":
+            world.themeColor = "#F2A12C";
+            break;
+        case "lemon":
+            world.themeColor = "#E4EC7D";
+            break;
+        case "sky":
+            world.themeColor = "#29E5D7";
+            break;
+        case "yellow":
+            world.themeColor = "#CCC902";
+            break;
+        case "black":
+            world.themeColor = "#000000";
+            break;
+        default:
+            world.themeColor = "#fe57a1";
+     }
+
+    $("body").css("background", "url(images/background_" + color + ".jpg)");
+    $("button").css("border", "1px solid " + world.themeColor);
+    $("button").css("color", world.themeColor);
+
+    $("button").mouseenter(function() {
+        $(this).css("background-color", world.themeColor).css("color", "#ffffff");
+    }).mouseleave(function() {
+         $(this).css("background-color", "#ffffff").css("color", world.themeColor);
+    });
 }
 
 //Document onload function
