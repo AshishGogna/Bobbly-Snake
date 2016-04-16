@@ -7,22 +7,41 @@ body
 {
 	width: 100%;
 	height: 100%;
+	position: relative;
+}
+.container
+{
+	width: 1000px;
+	height: 600px;
+	margin-left: auto;
+	margin-right: auto;
+	position: relative;
+  	top: 50%;
+  	margin-top: -300px;
 }
 #gameDiv
 {
+	position: relative;
 	width:800px;
 	height: 600px;
-	display: block;
-    margin-left: auto;
-    margin-right: auto;
-	position: relative;
-	top: 50%;
-	transform: translateY(-50%);
-	//border: 1px solid #fe57a1;
 	background-color: white;
-	-webkit-box-shadow: 0px 0px 20px 1px rgba(0,0,0,0.55);
-	-moz-box-shadow: 0px 0px 20px 1px rgba(0,0,0,0.55);
-	box-shadow: 0px 0px 20px 1px rgba(0,0,0,0.55);
+	float: left;
+	-webkit-box-shadow: 0px 0px 20px 1px rgba(0,0,0,0.35);
+	-moz-box-shadow: 0px 0px 20px 1px rgba(0,0,0,0.35);
+	box-shadow: 0px 0px 20px 1px rgba(0,0,0,0.35);
+}
+#itemsDiv
+{
+	position: relative;
+	display: inline-block;
+	width: 100px;
+	height: 240px;
+	background-color: rgba(255,255,255,0.96);
+	margin-left: 20px;
+
+	-webkit-box-shadow: 0px 0px 20px 1px rgba(0,0,0,0.35);
+	-moz-box-shadow: 0px 0px 20px 1px rgba(0,0,0,0.35);
+	box-shadow: 0px 0px 20px 1px rgba(0,0,0,0.35);
 }
 #gameCanvas
 {
@@ -32,21 +51,16 @@ body
 }
 #scoreDiv
 {
-	display: block;
-	position: absolute;
-	top: 5;
-	right: 20;
-	font-size: 50px;
-	z-index: 10;
+	width: 100px;
+	text-align: center;
+	font-size: 54px;
 }
 #speedDiv
 {
-	display: block;
-	position: absolute;
-	top: 50;
-	right: 0;
-	font-size: 20px;
-	display: none;
+	width: 100px;
+	text-align: center;
+	font-size: 26px;
+	margin-top: 10px;
 }
 #menu
 {
@@ -86,9 +100,14 @@ button
 	cursor: pointer;
 	font-size: 14px;
 	color: #fe57a1;
-	-webkit-box-shadow: 0px 0px 6px 1px rgba(0,0,0,0.45);
-	-moz-box-shadow: 0px 0px 6px 1px rgba(0,0,0,0.45);
-	box-shadow: 0px 0px 6px 1px rgba(0,0,0,0.45);
+	-webkit-box-shadow: 0px 0px 6px 1px rgba(0,0,0,0.35);
+	-moz-box-shadow: 0px 0px 6px 1px rgba(0,0,0,0.35);
+	box-shadow: 0px 0px 6px 1px rgba(0,0,0,0.35);
+}
+button:hover
+{
+	background-color: #fe57a1;
+	color: white;
 }
 button:active
 {
@@ -105,4 +124,58 @@ button:focus
 	height: 100px;
 	margin-left: 20px;
 	padding-top: 10px;
+}
+
+.scoreDivInfo
+{
+	font-size: 14px;
+	text-align: center;
+	-webkit-box-shadow: 0px 0px 6px 1px rgba(0,0,0,0.35);
+	-moz-box-shadow: 0px 0px 6px 1px rgba(0,0,0,0.35);
+	box-shadow: 0px 0px 6px 1px rgba(0,0,0,0.35);
+}
+
+.colorsBox
+{
+	width: 100px;
+	position: absolute;
+	bottom: 0;
+}
+.cBox
+{
+	width: 33.3px;
+	height: 33.3px;
+	background-color: blue;
+	display: inline-block;
+	float: left;
+}
+.cBox:hover
+{
+	-webkit-box-shadow: 0px 0px 20px 1px rgba(0,0,0,0.35);
+	-moz-box-shadow: 0px 0px 20px 1px rgba(0,0,0,0.35);
+	box-shadow: 0px 0px 20px 1px rgba(0,0,0,0.35);
+}
+#cBoxPink
+{
+	background-color: #fe57a1;
+}
+#cBoxOrange
+{
+	background-color: #F2A12C;
+}
+#cBoxLemon
+{
+	background-color: #E4EC7D;
+}
+#cBoxSky
+{
+	background-color: #29E5D7;
+}
+#cBoxYellow
+{
+	background-color: #CCC902;
+}
+#cBoxBlack
+{
+	background-color: #000000;
 }

@@ -1,4 +1,5 @@
 //Global variables
+
 var maxWidth = 0;
 var maxHeight = 0;
 
@@ -243,14 +244,13 @@ window.requestAnimFrame = (function(callback) {
 function updateScore()
 {
     $('#scoreDiv').html(score);
-    $('#speedDiv').html("Speed: " + Math.round(speed * 100) / 100 + "x");
+    $('#speedDiv').html(Math.round(speed * 100) / 100 + "x");
 }
 
 //Game restart function, jest reloads the page
 function restartGame()
 {
     location.reload();
-    //snake.init = [];
 }
 
 //Game initialization function
@@ -259,9 +259,6 @@ function initGame()
     console.log("BBB");
     maxWidth = $('#gameDiv').width();
     maxHeight = $('#gameDiv').height();
-
-    $('#gameDiv').append('<div id="scoreDiv">0</div>');
-    $('#gameDiv').append('<div id="speedDiv">1x</div><br>');
     world.init();
 }
 
@@ -286,8 +283,21 @@ function instructions()
     $('#gameDiv').append('<div id="instructions"><div id="instructionsContent"><h3>How to play ?</h3><h4>Movement controls</h4>W = Up<br>D = Right<br>S = Down<br>A = Left<br><h4>Difficulty</h4>The speed of snake increases 0.1x when snake eats the food. At the same time, the score gets incrementedS too.</div></div>');
 }
 
+function changeThemeColor(color)
+{
+    //pink = 
+    //orange = #F2A12C
+    //lemon = #E4EC7D
+    //sky = #29E5D7
+    //yellow = #CCC902
+    console.log("ABCD = " + color);
+}
+
 //Document onload function
 $(document).ready(function () {
+
+    var windowWidth = $(window).width();
+    var windowHeight = $(window).height();
 
     initUI();
 });

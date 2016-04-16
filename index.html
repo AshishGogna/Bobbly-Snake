@@ -9,7 +9,27 @@
 	</head>
 	<body>
 		<div class="section">
-			<div id="gameDiv"></div>
+			<div class="container">
+				<div id="gameDiv"></div>
+				<div id="itemsDiv">
+					<div id="scoreDiv">
+						0
+						<div class="scoreDivInfo">Score</div>
+					</div>
+					<div id="speedDiv">
+						1x
+					<div class="scoreDivInfo">Speed</div>
+					</div><br>
+					<div class="colorsBox">
+						<div class="cBox" onclick="changeThemeColor('pink')" id="cBoxPink"></div>
+						<div class="cBox" onclick="changeThemeColor('orange')" id="cBoxOrange"></div>
+						<div class="cBox" onclick="changeThemeColor('lemon')" id="cBoxLemon"></div>
+						<div class="cBox" onclick="changeThemeColor('sky')" id="cBoxSky"></div>
+						<div class="cBox" onclick="changeThemeColor('yellow')" id="cBoxYellow"></div>
+						<div class="cBox" onclick="changeThemeColor('black')" id="cBoxBlack"></div>
+					</div>
+				</div>
+			</div>
   		</div>
   	</body>
 </html>
