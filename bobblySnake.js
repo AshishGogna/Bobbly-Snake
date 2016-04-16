@@ -257,9 +257,6 @@ function restartGame()
 //Game initialization function
 function initGame()
 {
-    console.log("BBB");
-    maxWidth = $('#gameDiv').width();
-    maxHeight = $('#gameDiv').height();
     world.init();
 }
 
@@ -337,7 +334,20 @@ function goForFullscreen(should)
 {
     if (should == 0)
     {
+        $(".container").css("width", maxWidth+200);
+        $("#gameDiv").css("width", maxWidth);
 
+        $(".container").css("height", maxHeight);
+        $(".container").css("margin-top", -300);
+        $(".container").css("top", "50%");
+        $("#gameDiv").css("height", maxHeight);
+
+        $(".container").css("margin-left", "0 auto");
+        $(".container").css("margin-right", "0 auto");
+
+        $("#itemsDiv").css("display", "inline-block");
+
+        $(".exitFullScreen").css("display", "none");
     }
     else
     {
@@ -353,14 +363,16 @@ function goForFullscreen(should)
         $("#gameDiv").css("height", windowHeight);
 
         $("#itemsDiv").css("display", "none");
+
+        $('#gameDiv').append('<div class="exitFullScreen" id="speedDiv"><img src="images/fullscreen.png" alt="Full Screen" onclick="goForFullscreen(0)"></img></div>');
     }
 }
 
 //Document onload function
 $(document).ready(function () {
 
-    var windowWidth = $(window).width();
-    var windowHeight = $(window).height();
+    maxWidth = $('#gameDiv').width();
+    maxHeight = $('#gameDiv').height();
 
     initUI();
 });

@@ -159,6 +159,12 @@ button:focus
 	bottom: 0;
 	width: 100px;
 }
+.exitFullScreen
+{
+	position: absolute;
+	right: 0;
+	bottom: 0;
+}
 .cBox
 {
 	width: 33.3px;
