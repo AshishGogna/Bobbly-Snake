@@ -267,6 +267,9 @@ function initUI()
 
     var worldThemeColor = localStorage['worldThemeColor'] || 'pink';
     changeThemeColor(worldThemeColor.replace(/ /g,''));
+
+    var shouldBeFullScreen = localStorage['shouldBeFullScreen'] || 0;
+    goForFullscreen(shouldBeFullScreen);
 }
 
 //Start game button onclick function
@@ -382,10 +385,6 @@ function goForFullscreen(should)
         $("#gameDiv").css("-moz-box-shadow", "0px 0px 0px 0px rgba(0,0,0,0.0)");
         $("#gameDiv").css("box-shadow", "0px 0px 0px 0px rgba(0,0,0,0.0)");
 
-//    -webkit-box-shadow: 0px 0px 20px 1px rgba(0,0,0,0.35);
-//    -moz-box-shadow: 0px 0px 20px 1px rgba(0,0,0,0.35);
-//    box-shadow: 0px 0px 20px 1px rgba(0,0,0,0.35);
-
         $("#itemsDiv").css("display", "none");
 
         $('#gameDiv').append('<div class="exitFullScreen" id="speedDiv"><img src="images/fullscreen.png" alt="Full Screen" onclick="goForFullscreen(0)"></img></div>');
@@ -397,6 +396,8 @@ function goForFullscreen(should)
         maxWidth = $('#gameDiv').width();
         maxHeight = $('#gameDiv').height();
     }
+
+    localStorage['shouldBeFullScreen'] = should;
 }
 
 //Document onload function
