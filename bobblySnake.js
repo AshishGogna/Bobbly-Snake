@@ -333,6 +333,29 @@ function changeThemeColor(color)
     localStorage['worldThemeColor'] = color;
 }
 
+function goForFullscreen(should)
+{
+    if (should == 0)
+    {
+
+    }
+    else
+    {
+        var windowWidth = $(window).width();
+        var windowHeight = $(window).height();
+
+        $(".container").css("width", windowWidth);
+        $("#gameDiv").css("width", windowWidth);
+
+        $(".container").css("height", windowHeight);
+        $(".container").css("margin-top", 0);
+        $(".container").css("top", 0);
+        $("#gameDiv").css("height", windowHeight);
+
+        $("#itemsDiv").css("display", "none");
+    }
+}
+
 //Document onload function
 $(document).ready(function () {
 

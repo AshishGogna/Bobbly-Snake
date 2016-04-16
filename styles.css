@@ -2,6 +2,7 @@ body
 {
 	background: url("images/background_pink.jpg");
 	background-repeat: repeat;
+	margin: 0;
 }
 .section
 {
@@ -137,6 +138,10 @@ button:focus
 	width: 30px;
 	height: 30px;
 	padding-bottom: 15px;
+}
+.container img:hover
+{
+	cursor: hand;
 }
 #fullScreenInfo
 {
