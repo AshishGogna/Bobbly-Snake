@@ -209,7 +209,7 @@ $( document ).keypress(function(e) {
             gameStarted = 1;
             snake.move();
         }
-    
+
         if (ch == "w")
         {
             if (snake.direction != "down")
@@ -267,6 +267,9 @@ function initGame()
 function initUI()
 {
     $('#gameDiv').append('<div id="menu"><div id="buttons"><button onclick="startGame()">Start Game</button><button onclick="instructions()">Instructions</button></div></div>');
+
+    var worldThemeColor = localStorage['worldThemeColor'] || 'pink';
+    changeThemeColor(worldThemeColor.replace(/ /g,''));
 }
 
 //Start game button onclick function
@@ -291,6 +294,8 @@ function changeThemeColor(color)
     //lemon = #E4EC7D
     //sky = #29E5D7
     //yellow = #CCC902
+
+    console.log(color);
 
     switch(color) {
         case "pink":
@@ -324,6 +329,8 @@ function changeThemeColor(color)
     }).mouseleave(function() {
          $(this).css("background-color", "#ffffff").css("color", world.themeColor);
     });
+
+    localStorage['worldThemeColor'] = color;
 }
 
 //Document onload function
