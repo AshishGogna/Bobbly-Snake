@@ -332,8 +332,12 @@ function changeThemeColor(color)
 
 function goForFullscreen(should)
 {
+    var worldThemeColor = localStorage['worldThemeColor'] || 'pink';
+
     if (should == 0)
     {
+        maxWidth = 800;
+        maxHeight = 600;
         $(".container").css("width", maxWidth+200);
         $("#gameDiv").css("width", maxWidth);
 
@@ -348,23 +352,50 @@ function goForFullscreen(should)
         $("#itemsDiv").css("display", "inline-block");
 
         $(".exitFullScreen").css("display", "none");
+
+        $("#gameDiv").css("-webkit-box-shadow", "0px 0px 20px 1px rgba(0,0,0,0.35)");
+        $("#gameDiv").css("-moz-box-shadow", "0px 0px 20px 1px rgba(0,0,0,0.35)");
+        $("#gameDiv").css("box-shadow", "0px 0px 20px 1px rgba(0,0,0,0.35)");
+
+        $("body").css("background", "url('images/background_" + worldThemeColor + ".jpg')");
+
+        maxWidth = $('#gameDiv').width();
+        maxHeight = $('#gameDiv').height();
     }
     else
     {
         var windowWidth = $(window).width();
         var windowHeight = $(window).height();
 
-        $(".container").css("width", windowWidth);
-        $("#gameDiv").css("width", windowWidth);
+        width = windowWidth-(windowWidth%20)-20;
+        height = windowHeight-(windowHeight%20)-20;
 
-        $(".container").css("height", windowHeight);
-        $(".container").css("margin-top", 0);
-        $(".container").css("top", 0);
-        $("#gameDiv").css("height", windowHeight);
+        $(".container").css("width", width);
+        $("#gameDiv").css("width", width);
+
+        $(".container").css("height", height);
+        $(".container").css("margin-top", -height/2);
+        $(".container").css("top", "50%");
+        $("#gameDiv").css("height", height);
+
+        $("#gameDiv").css("-webkit-box-shadow", "0px 0px 0px 0px rgba(0,0,0,0.0)");
+        $("#gameDiv").css("-moz-box-shadow", "0px 0px 0px 0px rgba(0,0,0,0.0)");
+        $("#gameDiv").css("box-shadow", "0px 0px 0px 0px rgba(0,0,0,0.0)");
+
+//    -webkit-box-shadow: 0px 0px 20px 1px rgba(0,0,0,0.35);
+//    -moz-box-shadow: 0px 0px 20px 1px rgba(0,0,0,0.35);
+//    box-shadow: 0px 0px 20px 1px rgba(0,0,0,0.35);
 
         $("#itemsDiv").css("display", "none");
 
         $('#gameDiv').append('<div class="exitFullScreen" id="speedDiv"><img src="images/fullscreen.png" alt="Full Screen" onclick="goForFullscreen(0)"></img></div>');
+
+        $("body").css("background", "url()");
+
+        $("body").css("background-color", worldThemeColor);
+
+        maxWidth = $('#gameDiv').width();
+        maxHeight = $('#gameDiv').height();
     }
 }
 
