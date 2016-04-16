@@ -1,7 +1,7 @@
 <html>
 	<head>
 		<title>
-			Bobbly Snake
+			Edgy Snake
 		</title>
 		<link rel="stylesheet" href="styles.css">
 		<script src="jquery-2.2.3.min.js"></script>
@@ -19,7 +19,11 @@
 					<div id="speedDiv">
 						<span id="speedNum">0</span>
 						<div class="scoreDivInfo">Speed</div>
-					</div><br>
+					</div>
+					<div id="speedDiv">
+						<img src="images/fullscreen.png" alt="Full Screen"></img>
+						<div class="scoreDivInfo" id="fullScreenInfo">Full Screen</div>
+					</div>
 					<div class="colorsBox">
 						<div class="cBox" onclick="changeThemeColor('pink')" id="cBoxPink"></div>
 						<div class="cBox" onclick="changeThemeColor('orange')" id="cBoxOrange"></div>
@@ -28,6 +32,7 @@
 						<div class="cBox" onclick="changeThemeColor('yellow')" id="cBoxYellow"></div>
 						<div class="cBox" onclick="changeThemeColor('black')" id="cBoxBlack"></div>
 					</div>
+					<div class="scoreDivInfo" id="colorsBoxInfo">Theme</div>
 				</div>
 			</div>
   		</div>
