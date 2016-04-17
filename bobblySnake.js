@@ -210,6 +210,8 @@ $( document ).keypress(function(e) {
             snake.move();
         }
 
+        console.log(ch);
+
         if (ch == "w")
         {
             if (snake.direction != "down")
@@ -263,7 +265,7 @@ function initGame()
 //Game menu initialization function
 function initUI()
 {
-    $('#gameDiv').append('<div id="menu"><div id="buttons"><button onclick="startGame()">Start Game</button><button onclick="instructions()">Instructions</button></div></div>');
+    $('#gameDiv').append('<div id="menu"><img src="images/logo.png"></img><div id="buttons"><button onclick="startGame()">Start Game</button><button onclick="instructions()">Instructions</button></div></div>');
 
     var worldThemeColor = localStorage['worldThemeColor'] || 'pink';
     changeThemeColor(worldThemeColor.replace(/ /g,''));
@@ -284,7 +286,7 @@ function startGame()
 function instructions()
 {
     $( "#menu" ).remove();
-    $('#gameDiv').append('<div id="instructions"><div id="instructionsContent"><h3>How to play ?</h3><h4>Movement controls</h4>W = Up<br>D = Right<br>S = Down<br>A = Left<br><h4>Rules</h4>You just have to eat the food as many times as you can.<br>If you hit the boundry walls, you die.<h4>Difficulty</h4>The speed of snake increases 0.1x when snake eats the food. At the same time,<br>the score gets incremented too.</div></div>');
+    $('#gameDiv').append('<div id="instructions"><div id="instructionsContent"><h3>How to play ?</h3><h4>Movement controls</h4>W = Up<br>D = Right<br>S = Down<br>A = Left<br><h4>Rules</h4>You just have to eat the food as many times as you can.<br>If you hit the boundry walls, you die.<h4>Difficulty</h4>The speed of snake increases 0.1x when snake eats the food. At the same time,<br>the score gets incremented too.</div><img onclick="hideInstructions()" id="closeImg" src="images/close.png"></img></div>');
 }
 
 function changeThemeColor(color)
@@ -398,6 +400,12 @@ function goForFullscreen(should)
     }
 
     localStorage['shouldBeFullScreen'] = should;
+}
+
+function hideInstructions()
+{
+    $( "#instructions" ).remove();
+    initUI();
 }
 
 //Document onload function
