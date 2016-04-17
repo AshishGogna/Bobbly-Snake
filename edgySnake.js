@@ -1,5 +1,10 @@
-//Global variables
+//
+//  Edgy Snake
+//  edgySnake.js
+//  Created by Ashish Gogna on 4/12/16.
+//
 
+//Global variables
 var maxWidth = 0;
 var maxHeight = 0;
 
